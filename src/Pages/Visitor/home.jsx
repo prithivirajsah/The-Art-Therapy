@@ -17,10 +17,10 @@ const plans = [
   { name: 'Premium', tone: 'bg-[#403832] text-white', features: ['Everything in Member', 'Online courses', 'Live workshops', 'Priority support', 'Printable resource packs', 'Expert Q&A sessions'], action: 'Go premium' },
 ]
 
-function Home({ onHome, onResources, onPricing, onLogin, onStartJourney }) {
+function Home({ onHome, onResources, onPricing, onLogin, onStartJourney, isAuthenticated, onDashboard, onLogout }) {
 	return (
 		<div className="bg-[#fbf8f2] text-[#403832]">
-			<Header onHome={onHome} onResources={onResources} onPricing={onPricing} onLogin={onLogin} onStartJourney={onStartJourney} />
+			<Header onHome={onHome} onResources={onResources} onPricing={onPricing} onLogin={onLogin} onStartJourney={onStartJourney} isAuthenticated={isAuthenticated} onDashboard={onDashboard} onLogout={onLogout} />
 
 			<main>
 				<section id="home" className="relative overflow-hidden bg-[#f7f0e6]">

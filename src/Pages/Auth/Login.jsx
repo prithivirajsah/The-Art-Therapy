@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import logo from '../../assets/image1.png'
 
-function Login({ onCreateAccount, onForgotPassword }) {
+function Login({ onCreateAccount, onForgotPassword, onLoginSuccess, onBackToHome }) {
   const [submitted, setSubmitted] = useState(false)
 
   function handleSubmit(event) {
     event.preventDefault()
     setSubmitted(true)
+    onLoginSuccess()
   }
 
   return (
@@ -27,7 +28,7 @@ function Login({ onCreateAccount, onForgotPassword }) {
 
         <section className="flex items-center px-7 py-12 sm:px-14 lg:px-20">
           <div className="w-full max-w-md">
-            <button type="button" className="mb-14 text-sm text-[#8a8178] transition hover:text-[#719477]">
+            <button type="button" onClick={onBackToHome} className="mb-14 text-sm text-[#8a8178] transition hover:text-[#719477]">
               ← Back to home
             </button>
             <p className="mb-3 text-sm font-medium uppercase tracking-[0.22em] text-[#719477]">Welcome back</p>

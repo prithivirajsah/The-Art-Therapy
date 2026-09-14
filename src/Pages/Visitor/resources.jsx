@@ -14,7 +14,7 @@ const resources = [
   { category: 'Guides', type: 'PDF', title: 'Colour & Emotion Guide', description: 'Explore the therapeutic connections between colour and emotional wellbeing.', duration: '20 min', action: 'Download', image: 'photo-1544256718-3bcf237f3974' },
 ]
 
-function Resources({ onHome, onPricing, onLogin, onStartJourney }) {
+function Resources({ onHome, onPricing, onLogin, onStartJourney, isAuthenticated, onDashboard, onLogout }) {
   const [activeCategory, setActiveCategory] = useState('All')
   const [search, setSearch] = useState('')
   const visibleResources = useMemo(() => resources.filter((resource) => {
@@ -25,7 +25,7 @@ function Resources({ onHome, onPricing, onLogin, onStartJourney }) {
 
   return (
     <div className="bg-[#fbf8f2] text-[#403832]">
-      <Header onHome={onHome} onResources={() => {}} onPricing={onPricing} onLogin={onLogin} onStartJourney={onStartJourney} />
+      <Header onHome={onHome} onResources={() => {}} onPricing={onPricing} onLogin={onLogin} onStartJourney={onStartJourney} isAuthenticated={isAuthenticated} onDashboard={onDashboard} onLogout={onLogout} />
       <main>
         <section className="border-b border-[#e5d9ce] bg-[#f7f0e6] px-5 py-20 text-center sm:px-8 lg:py-24">
           <h1 className="font-serif text-5xl font-semibold sm:text-6xl">Creative Resource Library</h1>

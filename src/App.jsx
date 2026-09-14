@@ -5,9 +5,11 @@ import Register from './Pages/Auth/Register'
 import Home from './Pages/Visitor/home'
 import Pricing from './Pages/Visitor/pricing'
 import Resources from './Pages/Visitor/resources'
+import UserHome from './Pages/User/home'
 
 function App() {
   const [view, setView] = useState('home')
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   if (view === 'forgot-password') {
     return <ForgotPassword onBackToLogin={() => setView('login')} />
@@ -18,7 +20,11 @@ function App() {
   }
 
   if (view === 'login') {
-    return <Login onCreateAccount={() => setView('register')} onForgotPassword={() => setView('forgot-password')} />
+    return <Login onCreateAccount={() => setView('register')} onForgotPassword={() => setView('forgot-password')} onBackToHome={() => setView('home')} onLoginSuccess={() => { setIsAuthenticated(true); setView('home') }} />
+  }
+
+  if (view === 'dashboard') {
+    return <UserHome onNavigate={() => {}} onLogout={() => { setIsAuthenticated(false); setView('home') }} />
   }
 
   const visitorProps = {
@@ -27,6 +33,9 @@ function App() {
     onPricing: () => setView('pricing'),
     onLogin: () => setView('login'),
     onStartJourney: () => setView('register'),
+    isAuthenticated,
+    onDashboard: () => setView('dashboard'),
+    onLogout: () => { setIsAuthenticated(false); setView('home') },
   }
 
   if (view === 'resources') {

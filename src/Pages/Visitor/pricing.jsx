@@ -20,10 +20,10 @@ const comparison = [
   ['Priority support', '×', '×', '✓'],
 ]
 
-function Pricing({ onHome, onResources, onLogin, onStartJourney }) {
+function Pricing({ onHome, onResources, onLogin, onStartJourney, isAuthenticated, onDashboard, onLogout }) {
   return (
     <div className="bg-[#fbf8f2] text-[#403832]">
-      <Header onHome={onHome} onResources={onResources} onPricing={() => {}} onLogin={onLogin} onStartJourney={onStartJourney} />
+      <Header onHome={onHome} onResources={onResources} onPricing={() => {}} onLogin={onLogin} onStartJourney={onStartJourney} isAuthenticated={isAuthenticated} onDashboard={onDashboard} onLogout={onLogout} />
       <main>
         <section className="px-5 py-20 text-center sm:px-8 lg:py-24"><p className="inline-flex rounded-full bg-[#edf4ef] px-4 py-2 text-sm text-[#5f8065]">🌿 Simple, clear pricing</p><h1 className="mt-7 font-serif text-5xl font-semibold sm:text-6xl">Make creativity part of your routine</h1><p className="mx-auto mt-5 max-w-xl text-lg leading-8 text-[#756b64]">Choose the plan that feels right for where you are right now.<br className="hidden sm:block" /> You can change any time.</p>
           <div className="mx-auto mt-12 grid max-w-6xl gap-5 text-left lg:grid-cols-3">{plans.map((plan) => <article key={plan.name} className={`relative rounded-3xl border p-8 ${plan.tone} ${plan.popular ? 'border-[#5f8065] lg:-mt-4' : ''}`}>{plan.popular && <div className="absolute inset-x-0 top-0 rounded-t-3xl bg-[#5f8065] py-2 text-center text-sm font-medium">✨ Most popular</div>}<div className={plan.popular ? 'pt-8' : ''}><h2 className="font-serif text-3xl font-semibold">{plan.name}</h2><p className={`mt-3 text-sm ${plan.popular ? 'text-white/80' : 'text-[#9a8d82]'}`}>{plan.subtitle}</p><div className={`mt-8 rounded-xl px-5 py-5 text-center font-serif ${plan.contact}`}>Contact us for pricing</div><button type="button" onClick={onStartJourney} className={`mt-7 w-full rounded-xl border px-5 py-4 font-semibold transition hover:opacity-85 ${plan.popular ? 'border-white bg-white text-[#5f8065]' : 'border-current/20 bg-transparent'}`}>{plan.action}</button><ul className="mt-8 space-y-4 text-sm leading-6">{plan.features.map((feature) => <li key={feature}>✓ &nbsp;{feature}</li>)}{plan.unavailable.map((feature) => <li key={feature} className="opacity-45">× &nbsp;{feature}</li>)}</ul></div></article>)}</div>

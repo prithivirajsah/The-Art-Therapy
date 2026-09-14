@@ -12,6 +12,7 @@ import AdminUsers from './Pages/Admin/users'
 import AdminActivities from './Pages/Admin/activities'
 import AdminResources from './Pages/Admin/resources'
 import AdminModeration from './Pages/Admin/moderation'
+import Feature from './Pages/User/feature'
 
 function App() {
   const [view, setView] = useState('home')
@@ -30,11 +31,15 @@ function App() {
   }
 
   if (view === 'dashboard') {
-    return <UserHome onNavigate={(destination) => setView(destination === 'community' ? 'community' : destination === 'resources' ? 'resources' : destination === 'admin' ? 'admin' : 'dashboard')} onLogout={() => { setIsAuthenticated(false); setView('home') }} />
+    return <UserHome onNavigate={(destination) => setView(destination === 'community' || destination === 'create' || destination === 'journal' || destination === 'art' ? destination : destination === 'resources' ? 'resources' : destination === 'admin' ? 'admin' : 'dashboard')} onLogout={() => { setIsAuthenticated(false); setView('home') }} />
   }
 
   if (view === 'community') {
-    return <Community onNavigate={(destination) => setView(destination === 'community' ? 'community' : destination === 'resources' ? 'resources' : destination === 'admin' ? 'admin' : 'dashboard')} onLogout={() => { setIsAuthenticated(false); setView('home') }} />
+    return <Community onNavigate={(destination) => setView(destination === 'community' || destination === 'create' || destination === 'journal' || destination === 'art' ? destination : destination === 'resources' ? 'resources' : destination === 'admin' ? 'admin' : 'dashboard')} onLogout={() => { setIsAuthenticated(false); setView('home') }} />
+  }
+
+  if (['create', 'journal', 'art'].includes(view)) {
+    return <Feature type={view} onNavigate={(destination) => setView(destination === 'community' || destination === 'create' || destination === 'journal' || destination === 'art' ? destination : destination === 'resources' ? 'resources' : destination === 'admin' ? 'admin' : 'dashboard')} onLogout={() => { setIsAuthenticated(false); setView('home') }} />
   }
 
   if (view === 'admin') {

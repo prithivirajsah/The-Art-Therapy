@@ -6,6 +6,7 @@ import Home from './Pages/Visitor/home'
 import Pricing from './Pages/Visitor/pricing'
 import Resources from './Pages/Visitor/resources'
 import UserHome from './Pages/User/home'
+import Community from './Pages/User/community'
 
 function App() {
   const [view, setView] = useState('home')
@@ -24,7 +25,11 @@ function App() {
   }
 
   if (view === 'dashboard') {
-    return <UserHome onNavigate={() => {}} onLogout={() => { setIsAuthenticated(false); setView('home') }} />
+    return <UserHome onNavigate={(destination) => setView(destination === 'community' ? 'community' : 'dashboard')} onLogout={() => { setIsAuthenticated(false); setView('home') }} />
+  }
+
+  if (view === 'community') {
+    return <Community onNavigate={(destination) => setView(destination === 'community' ? 'community' : 'dashboard')} onLogout={() => { setIsAuthenticated(false); setView('home') }} />
   }
 
   const visitorProps = {
